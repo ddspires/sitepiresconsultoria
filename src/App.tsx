@@ -713,19 +713,46 @@ const dashboardFeatures = [
                 O sistema de gestão da Pires Consultoria e Gráfica que atende perfeitamente a pizzarias, lanchonetes, restaurantes, hamburguerias, gráficas, armarinhos, variedades, assistência técnicas... Funciona com banco de dados SQL local, conta com backup manual e automatico ao abrir e fechar o sistema, personalização de logomarca e fundo de tela, possui controle de estoque, sistema de mesas, pdv, delivery, Os (Ordem de Serviço), contas a pagar e receber, sistemas de relatório completo, calendário de entregas em tempo real, com integração de envio de status e mensagens para clientes via whatsapp de forma simplificada, suporte total para exportação em PDF, PLANILHA, impressões A4, bobinas térmica 80mm e 58mm, rodando em ambiente WINDOWS, LINUX E MACOS
               </p>
               <div className="flex flex-col items-center gap-3">
-                <div className="relative group mt-2 mb-2">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
-                  <a 
-                    href="https://drive.google.com/file/d/1FuhGHOMtvWAGGXbMaNQA9AhG_pc5tj38/view?usp=sharing" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
-                  >
-                    <Download className="w-5 h-5" />
-                    BAIXAR VERSÃO WINDOWS
-                  </a>
+                <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 mt-2 mb-2">
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
+                    <a 
+                      href="https://drive.google.com/file/d/1FuhGHOMtvWAGGXbMaNQA9AhG_pc5tj38/view?usp=sharing" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
+                    >
+                      <Download className="w-5 h-5" />
+                      BAIXAR VERSÃO WINDOWS
+                    </a>
+                  </div>
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
+                    <a 
+                      href="https://drive.google.com/file/d/1JPTx8uJtNJbaR7eY4iengKOTtmZXY70Z/view?usp=sharing" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
+                    >
+                      <Download className="w-5 h-5" />
+                      BAIXAR VERSÃO LINUX
+                    </a>
+                  </div>
+                  <div className="relative group mt-4 sm:mt-0">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
+                    <div 
+                      className="relative inline-flex items-center gap-2 bg-emerald-500 text-zinc-950 font-bold py-4 px-8 rounded-xl shadow-xl cursor-default opacity-90"
+                    >
+                      <Download className="w-5 h-5" />
+                      BAIXAR VERSÃO MACOS
+                      <div className="absolute -top-4 -right-4 bg-[#ff2a5f] text-white font-black text-[10px] sm:text-xs px-3 py-1.5 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform rotate-12 z-10 whitespace-nowrap">
+                        EM BREVE
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <span className="text-zinc-500 text-sm font-medium text-center">* INSTALE JÁ E TESTE POR 7 DIAS TOTALMENTE GRATUITO, COM TODAS AS FUNCIONALIDADES, SEM COMPROMISSO!</span>
+                <span className="text-red-500 font-bold text-center">PRIMEIRO ACESSO: LOGIN - admin / SENHA - 123</span>
               </div>
             </div>
 
