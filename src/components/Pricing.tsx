@@ -27,7 +27,7 @@ const graficaData = [
   { name: "Caderno de chamada Anual c/Cadastro (a partir de)", price: "R$ 45,00" },
   { name: "Cartões de visita (1000un)", price: "R$ 149,99" },
   { name: "TAG Verniz total UV + Furo (1000un)", price: "R$ 159,99" },
-  { name: "Panfletos 10x14 (2500un)", price: "R$ 169,99" },
+  { name: "Panfletos 10x14 (2500un)", price: "R$ 179,99" },
   { name: "Marcadores de Página 5x18 (1000un)", price: "R$ 259,99" },
 ];
 
