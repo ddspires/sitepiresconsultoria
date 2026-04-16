@@ -56,6 +56,7 @@ const dashboardFeatures = [
     { id: 9, title: "CALENDÁRIO (Entrega / produção)", description: "visualização geral de entregas atuais, e futuras relacionado a pedidos de produção que possuem status, mostrando entregas próximas e entregas em atraso, conta com lembretes ao fazer login no sistema que ajuda a focar nas demandas.", image: "/dashboard-9.jpg" },
     { id: 10, title: "OS (Ordem de Serviço)", description: "Painel de ordem de serviços, com descrição de problemas, tipo, marca, modelo, numero serial, anexo de fotos, informações de defeito, informações de solução, gráficos e listas informativas, status personalizados e exportações em pdf e excell, data e horario de entrada, aceita multiplas formas de pagamento, peças e serviços cadastrados como assistencia técnica, com ou sem movimentação de estoque, etc...", image: "/dashboard-10.jpg", isNew: true },
     { id: 11, title: "ÓTICA", description: "Módulo ótica, com dados sobre receita, informações detalhadas sobre olho direito e esquerdo, totalmente integrado com financeiro para pagamentos de entrada e pagamentos futuros, impressão de recibo de entrega, mensagens de cobrança via whatsapp, assim como status e resumo da venda, opção de cotação e muito mais.", image: "/dashboard-11.jpg", isNew: true },
+    { id: 12, title: "ETIQUETAS", description: "Módulo para impressão de etiquetas de diversos tamanhos, modelos e formas, usado para impressora A4 e também bobinas 50mm e 80mm, com inserção de logomarca, validade, lote, fabricação, código de barras, etc.", image: "/dashboard-12.jpg", isNew: true },
   ];
 
   const getBusinessStatus = () => {
@@ -718,7 +719,7 @@ const dashboardFeatures = [
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
                     <a 
-                      href="https://drive.google.com/file/d/1OANiG3DLHuZLkCgKuAXEjT0dgyIkxFN4/view?usp=sharing" 
+                      href="https://drive.google.com/file/d/1zYAVLSYD3SMx8K65z4Pksxc7culBcbnU/view?usp=sharing" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
@@ -726,14 +727,14 @@ const dashboardFeatures = [
                       <Download className="w-5 h-5" />
                       BAIXAR VERSÃO WINDOWS
                       <div className="absolute -top-3 -right-3 bg-blue-600 text-white font-black text-[9px] sm:text-[10px] px-2 py-1 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform -rotate-6 z-10 whitespace-nowrap">
-                        v27.03.2026
+                        v15.04.2026
                       </div>
                     </a>
                   </div>
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
                     <a 
-                      href="https://drive.google.com/file/d/1JPTx8uJtNJbaR7eY4iengKOTtmZXY70Z/view?usp=sharing" 
+                      href="https://drive.google.com/file/d/1gQVkWezS2YRYsFSGswvQYe0RsnW-Z_ae/view?usp=sharing" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
@@ -741,7 +742,7 @@ const dashboardFeatures = [
                       <Download className="w-5 h-5" />
                       BAIXAR VERSÃO LINUX
                       <div className="absolute -top-3 -right-3 bg-blue-600 text-white font-black text-[9px] sm:text-[10px] px-2 py-1 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform -rotate-6 z-10 whitespace-nowrap">
-                        v19.03.2026
+                        v15.04.2026
                       </div>
                     </a>
                   </div>
