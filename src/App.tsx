@@ -24,12 +24,14 @@ import {
   Star,
   Mail,
   Clock,
-  Download
+  Download,
+  Youtube
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import logo from './assets/logo.svg';
 import PartnersSection from './components/PartnersSection';
+import { TikTokIcon, KwaiIcon } from './components/Icons';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -712,7 +714,7 @@ const dashboardFeatures = [
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-emerald-400">DASHBOARD EMPRESA PRO</h2>
               <p className="text-zinc-400 text-lg mb-8">
-                O sistema de gestão da Pires Consultoria e Gráfica que atende perfeitamente a pizzarias, lanchonetes, restaurantes, hamburguerias, gráficas, armarinhos, variedades, assistência técnicas... Funciona com banco de dados SQL local, conta com backup manual e automatico ao abrir e fechar o sistema, personalização de logomarca e fundo de tela, possui controle de estoque, sistema de mesas, pdv, delivery, Os (Ordem de Serviço), contas a pagar e receber, sistemas de relatório completo, calendário de entregas em tempo real, com integração de envio de status e mensagens para clientes via whatsapp de forma simplificada, suporte total para exportação em PDF, PLANILHA, impressões A4, bobinas térmica 80mm e 58mm, rodando em ambiente WINDOWS, LINUX E MACOS
+                O sistema de gestão da Pires Consultoria e Gráfica que atende perfeitamente a pizzarias, lanchonetes, restaurantes, hamburguerias, gráficas, armarinhos, variedades, assistência técnicas... Funciona com banco de dados SQL local e também nuvem de forma hibrida, conta com backup manual e automatico ao abrir e fechar o sistema tanto na nuvem como local, personalização de logomarca e fundo de tela, possui controle de estoque, sistema de mesas, pdv, delivery, Os (Ordem de Serviço), contas a pagar e receber, sistemas de relatório completo, calendário de entregas em tempo real, com integração de envio de status e mensagens para clientes via whatsapp de forma simplificada, suporte total para exportação em PDF, PLANILHA, impressões A4, bobinas térmica 80mm e 58mm, rodando em ambiente WINDOWS, LINUX E MACOS
               </p>
               <div className="flex flex-col items-center gap-3">
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 mt-2 mb-2">
@@ -967,6 +969,15 @@ const dashboardFeatures = [
                 <a href="https://www.facebook.com/people/Pires-Consultoria-em-Ti-Sm-e-Gr%C3%A1fica-R%C3%A1pida/61555367639012/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-emerald-500 hover:text-zinc-950 transition-colors">
                   <Facebook className="w-5 h-5" />
                 </a>
+                <a href="https://www.tiktok.com/@pires.consultoria94?_r=1&_t=ZS-95jjHxsYgVk" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-emerald-500 hover:text-zinc-950 transition-colors">
+                  <TikTokIcon className="w-5 h-5" />
+                </a>
+                <a href="https://k.kwai.com/u/@piresconsultoria/vnFQyCm3" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-emerald-500 hover:text-zinc-950 transition-colors">
+                  <KwaiIcon className="w-5 h-5" />
+                </a>
+                <a href="https://www.youtube.com/@PiresConsultoriaeGr%C3%A1fica" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-emerald-500 hover:text-zinc-950 transition-colors">
+                  <Youtube className="w-5 h-5" />
+                </a>
               </div>
             </div>
             
@@ -1030,6 +1041,7 @@ const dashboardFeatures = [
       >
         <MessageCircle className="w-7 h-7 drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]" />
       </a>
+
     </div>
   );
 }
