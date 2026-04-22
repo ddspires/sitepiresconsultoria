@@ -25,7 +25,24 @@ import {
   Mail,
   Clock,
   Download,
-  Youtube
+  Youtube,
+  ShieldCheck,
+  Users,
+  ShoppingCart,
+  LayoutGrid,
+  Bike,
+  BarChart3,
+  ClipboardList,
+  Settings,
+  Calendar,
+  Wrench,
+  Eye,
+  Tag,
+  Box,
+  BookOpen,
+  PieChart,
+  Maximize2,
+  ZoomIn
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -43,22 +60,139 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedDashboard, setSelectedDashboard] = useState<{id: number, title: string, description: string, image: string, isNew?: boolean} | null>(null);
+  const [selectedDashboard, setSelectedDashboard] = useState<{id: number, title: string, description: string, image: string, qualities?: string[], icon?: React.ReactNode, isNew?: boolean} | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [currentZoomImage, setCurrentZoomImage] = useState<string | null>(null);
 
 const dashboardFeatures = [
-    { id: 1, title: "Login Multusuários", description: "Controle de permissões de acordo com cargo / função, para usuários com login / senha, e senha master para recuperação de acesso.", image: "/dashboard-1.jpg" },
-    { id: 2, title: "Painel de Atendimento", description: "Gerenciamento de fila de atendimento (Arrastar e Soltar) e status de produção, com gráficos; Visualização em kanban e listas; Botões de acesso rápido com atalhos.", image: "/dashboard-2.jpg" },
-    { id: 3, title: "PDV (Venda Rápida)", description: "Busca de produtos e clientes simplificada, formas de pagamentos multiplas, informação de vezes para cartão de crédito, desconto em real ou percentual, tanto por item quanto geral, e opções de acréscimo.", image: "/dashboard-3.jpg" },
-    { id: 4, title: "MESAS (Salão de Atendimento)", description: "Criação de mesas com quantidades de pessoas, colunas para melhor visualização, tempo de permanencia e valor de consumo atualizado em tempo real, impressão de via cozinha com observações, impressão de parcial, reserva de mesas, controle de higienização de mesas, e histórico de mesas recem concluidas.", image: "/dashboard-4.jpg", isNew: true },
-    { id: 5, title: "DELIVERY (Entregas Whatsapp e Balcão)", description: "Inclusão de pedidos feito pelo whatsapp e tambem feitos diretamente no balcão, exibição de tempo desde a criação do pedido atualizado em tempo real, dados de entrega com ponto de referencia, taxa de entrega, previsão de entrega em minutos, informações de troco para com valor a levar trocado, formas de pagamento facilitadas, envio de status para o cliente nos processos de preparação e de envio, impressão pedido, cozinha e entrega para motoboy, e coluna de entregas finalizadas recentimentes.", image: "/dashboard-5.jpg", isNew: true },
-    { id: 6, title: "FINANCEIRO (Contas à Pagar e à Receber)", description: "Inclusão de Receitas e Despesas para um melhor controle financeiro, contando com categorias ajustaveis, relatorios detalhados com diversos filtros, exportação em PDF E PLANILHAS, com visualização de gráficos estilo barras e pizza.", image: "/dashboard-6.jpg" },
-    { id: 7, title: "PEDIDOS", description: "Visualização de pedidos por status, cotações, abertos, finalizados, cancelados e excluidos, com resumo das informações básicas necessárias para identificar e visualizar, podendo editar a depender so status, e podendo tranformar cotação em pedido, dentre várias outra possibilidades a ser explorada nesta seção.", image: "/dashboard-7.jpg" },
-    { id: 8, title: "GESTÃO", description: "visualização de analise financeira de vendas, por gráficos, produtos, formas de pagamento, origem de vendas e vários filtros, também é possivel gerenciar clientes, visualizando data da ultima compra, valor total gasto, ver o nivel vip do cliente, visualizar produtos com variações e kits, verificar a movimentação do estoque, fazer acertos e conferencias, e fazer a gestão de equipe, cargos, funcoes e definir a senha master, todos os campos existem opções de impressão, exportação em pdf e planilha.", image: "/dashboard-8.jpg" },
-    { id: 9, title: "CALENDÁRIO (Entrega / produção)", description: "visualização geral de entregas atuais, e futuras relacionado a pedidos de produção que possuem status, mostrando entregas próximas e entregas em atraso, conta com lembretes ao fazer login no sistema que ajuda a focar nas demandas.", image: "/dashboard-9.jpg" },
-    { id: 10, title: "OS (Ordem de Serviço)", description: "Painel de ordem de serviços, com descrição de problemas, tipo, marca, modelo, numero serial, anexo de fotos, informações de defeito, informações de solução, gráficos e listas informativas, status personalizados e exportações em pdf e excell, data e horario de entrada, aceita multiplas formas de pagamento, peças e serviços cadastrados como assistencia técnica, com ou sem movimentação de estoque, etc...", image: "/dashboard-10.jpg", isNew: true },
-    { id: 11, title: "ÓTICA", description: "Módulo ótica, com dados sobre receita, informações detalhadas sobre olho direito e esquerdo, totalmente integrado com financeiro para pagamentos de entrada e pagamentos futuros, impressão de recibo de entrega, mensagens de cobrança via whatsapp, assim como status e resumo da venda, opção de cotação e muito mais.", image: "/dashboard-11.jpg", isNew: true },
-    { id: 12, title: "ETIQUETAS", description: "Módulo para impressão de etiquetas de diversos tamanhos, modelos e formas, usado para impressora A4 e também bobinas 50mm e 80mm, com inserção de logomarca, validade, lote, fabricação, código de barras, etc.", image: "/dashboard-12.jpg", isNew: true },
+    { 
+      id: 1, 
+      title: "Login Multusuários", 
+      icon: <ShieldCheck className="w-5 h-5" />, 
+      description: "Gestão robusta de segurança com hierarquia de acesso, logs de auditoria e recuperação mestre em tempo real.", 
+      image: "/dashboard-1.jpg",
+      qualities: ["Hierarquia de Acesso", "Logs de Atividade", "Segurança Criptografada", "Senha Master"]
+    },
+    { 
+      id: 2, 
+      title: "Painel de Atendimento", 
+      icon: <Users className="w-5 h-5" />, 
+      description: "Controle dinâmico de produtividade com visão Kanban, sistema drag & drop e fila de produção inteligente.", 
+      image: "/dashboard-2.jpg",
+      qualities: ["Visualização Kanban", "Status em Tempo Real", "Atalhos Inteligentes", "Gráficos de Fluxo"]
+    },
+    { 
+      id: 3, 
+      title: "PDV (Venda Rápida)", 
+      icon: <ShoppingCart className="w-5 h-5" />, 
+      description: "Terminal de vendas ultra-veloz com suporte a múltiplos pagamentos, descontos flexíveis e busca instantânea de itens.", 
+      image: "/dashboard-3.jpg",
+      qualities: ["Múltiplos Pagamentos", "Descontos Item/Geral", "Busca Instantânea", "Faturamento Rápido"]
+    },
+    { 
+      id: 4, 
+      title: "MESAS (Salão)", 
+      icon: <LayoutGrid className="w-5 h-5" />, 
+      description: "Gestão completa do salão com controle de consumo ativo, tempo de permanência e status de higienização automatizado.", 
+      image: "/dashboard-4.jpg", 
+      isNew: true,
+      qualities: ["Status de Consumo", "Tempo de Mesa", "Reserva Dinâmica", "Controle de Cozinha"]
+    },
+    { 
+      id: 5, 
+      title: "DELIVERY", 
+      icon: <Bike className="w-5 h-5" />, 
+      description: "Integração omnicanal para pedidos via WhatsApp e balcão com rastreamento logístico e alertas de entrega automáticos.", 
+      image: "/dashboard-5.jpg", 
+      isNew: true,
+      qualities: ["Fila de Entrega Pro", "Cálculo de Taxas", "Integração WhatsApp", "Logística de Motoboys"]
+    },
+    { 
+      id: 6, 
+      title: "FINANCEIRO", 
+      icon: <BarChart3 className="w-5 h-5" />, 
+      description: "Controle monetário rigoroso com fluxo de caixa, DRE automatizado e dashboards de lucratividade avançada.", 
+      image: "/dashboard-6.jpg",
+      qualities: ["Fluxo de Caixa", "DRE Automático", "Relatórios PDF/Excel", "Gestão de Contas"]
+    },
+    { 
+      id: 7, 
+      title: "PEDIDOS", 
+      icon: <ClipboardList className="w-5 h-5" />, 
+      description: "Pipeline de vendas otimizado para transformar cotações em pedidos finalizados com agilidade e total rastreabilidade.", 
+      image: "/dashboard-7.jpg",
+      qualities: ["Conversão de Cotação", "Filtros Avançados", "Histórico Completo", "Gestão de Status"]
+    },
+    { 
+      id: 8, 
+      title: "GESTÃO", 
+      icon: <Settings className="w-5 h-5" />, 
+      description: "Inteligência de mercado com curva ABC de produtos, análise de performance de vendas e fidelização de clientes VIP.", 
+      image: "/dashboard-8.jpg",
+      qualities: ["Curva ABC", "Gestão de Estoque", "Ranking Financeiro", "Fidelidade VIP"]
+    },
+    { 
+      id: 9, 
+      title: "CALENDÁRIO", 
+      icon: <Calendar className="w-5 h-5" />, 
+      description: "Planejamento logístico centralizado com alertas inteligentes de prazos e visão 360° de todos os agendamentos.", 
+      image: "/dashboard-9.jpg",
+      qualities: ["Alertas de Prazos", "Visão Mensal/Semanal", "Lembretes Automáticos", "Gestão de Datas"]
+    },
+    { 
+      id: 10, 
+      title: "ORDEM DE SERVIÇO", 
+      icon: <Wrench className="w-5 h-5" />, 
+      description: "Sistema técnico completo com anexos fotográficos, laudos detalhados e rastreio de solução para assistências técnicas.", 
+      image: "/dashboard-10.jpg", 
+      isNew: true,
+      qualities: ["Laudo Técnico Pro", "Anexo de Imagens", "Checklist de Entrada", "Status de Reparo"]
+    },
+    { 
+      id: 11, 
+      title: "MÓDULO ÓTICA", 
+      icon: <Eye className="w-5 h-5" />, 
+      description: "Especialização para óticas com receitas digitais detalhadas, controle de laboratórios e histórico refrativo integrado.", 
+      image: "/dashboard-11.jpg", 
+      isNew: true,
+      qualities: ["Receituário Completo", "Ficha Médica D+E", "Venda de Lentes", "Controle Ótico"]
+    },
+    { 
+      id: 12, 
+      title: "ETIQUETAS", 
+      icon: <Tag className="w-5 h-5" />, 
+      description: "Personalização de rótulos e códigos de barras com suporte a múltiplas bobinas e impressoras térmicas de mercado.", 
+      image: "/dashboard-12.jpg", 
+      isNew: true,
+      qualities: ["Código de Barras/QR", "Impressão Térmica", "Etiquetas Atacado", "Logomarca Própria"]
+    },
+    { 
+      id: 13, 
+      title: "COMANDA ELETRÔNICA", 
+      icon: <Smartphone className="w-5 h-5" />, 
+      description: "Mobilidade total para atendimento via app móvel, reduzindo erros de pedido e acelerando o fluxo de cozinha e bar.", 
+      image: "/dashboard-13.jpg", 
+      isNew: true,
+      qualities: ["App para Garçom", "Impressão Remota", "Fechamento de Mesa", "Sincronia Instantânea"]
+    },
+    { 
+      id: 14, 
+      title: "CARDÁPIO DIGITAL", 
+      icon: <BookOpen className="w-5 h-5" />, 
+      description: "Menu virtual interativo com imagens de alta definição e navegação por categorias que estimulam o consumo médio.", 
+      image: "/dashboard-14.jpg", 
+      isNew: true,
+      qualities: ["Link Interativo", "QR Code Dinâmico", "Imagens em 4K", "Filtros de Categoria"]
+    },
+    { 
+      id: 15, 
+      title: "DASHBOARD GERENTE BI", 
+      icon: <PieChart className="w-5 h-5" />, 
+      description: "Análises avançadas com dashboards de lucratividade, projeções de metas e análise de retorno sobre investimento estratégico em tempo real.", 
+      image: "/dashboard-15.jpg", 
+      isNew: true,
+      qualities: ["Indicadores de Negócio", "Projeção de Metas", "Retorno em Tempo Real", "Ranking de Lucro"]
+    },
   ];
 
   const getBusinessStatus = () => {
@@ -709,92 +843,198 @@ const dashboardFeatures = [
         </section>
 
         {/* Dashboard Section */}
-        <section id="dashboard" className="py-24 bg-zinc-950 relative">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-emerald-400">DASHBOARD EMPRESA PRO</h2>
-              <p className="text-zinc-400 text-lg mb-8">
-                O sistema de gestão da Pires Consultoria e Gráfica que atende perfeitamente a pizzarias, lanchonetes, restaurantes, hamburguerias, gráficas, armarinhos, variedades, assistência técnicas... Funciona com banco de dados SQL local e também nuvem de forma hibrida, conta com backup manual e automatico ao abrir e fechar o sistema tanto na nuvem como local, personalização de logomarca e fundo de tela, possui controle de estoque, sistema de mesas, pdv, delivery, Os (Ordem de Serviço), contas a pagar e receber, sistemas de relatório completo, calendário de entregas em tempo real, com integração de envio de status e mensagens para clientes via whatsapp de forma simplificada, suporte total para exportação em PDF, PLANILHA, impressões A4, bobinas térmica 80mm e 58mm, rodando em ambiente WINDOWS, LINUX E MACOS
-              </p>
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 mt-2 mb-2">
-                  <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
-                    <a 
-                      href="https://drive.google.com/file/d/1zYAVLSYD3SMx8K65z4Pksxc7culBcbnU/view?usp=sharing" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
-                    >
-                      <Download className="w-5 h-5" />
-                      BAIXAR VERSÃO WINDOWS
-                      <div className="absolute -top-3 -right-3 bg-blue-600 text-white font-black text-[9px] sm:text-[10px] px-2 py-1 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform -rotate-6 z-10 whitespace-nowrap">
-                        v15.04.2026
-                      </div>
-                    </a>
+        <section id="dashboard" className="py-32 bg-[#020202] relative overflow-hidden">
+          {/* Hardware Background Elements */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #10b981 1.5px, transparent 0)', backgroundSize: '48px 48px' }} />
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="flex flex-col lg:flex-row items-end justify-between mb-20 gap-10">
+              <div className="max-w-3xl">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="flex items-center gap-2 mb-6"
+                >
+                  <span className="px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-[0.2em]">
+                    v20.04.2026
+                  </span>
+                  <div className="flex items-center gap-2 ml-4">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                    <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-widest opacity-70">Sistema em Operação</span>
                   </div>
-                  <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
-                    <a 
-                      href="https://drive.google.com/file/d/1gQVkWezS2YRYsFSGswvQYe0RsnW-Z_ae/view?usp=sharing" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
-                    >
-                      <Download className="w-5 h-5" />
-                      BAIXAR VERSÃO LINUX
-                      <div className="absolute -top-3 -right-3 bg-blue-600 text-white font-black text-[9px] sm:text-[10px] px-2 py-1 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform -rotate-6 z-10 whitespace-nowrap">
-                        v15.04.2026
-                      </div>
-                    </a>
+                </motion.div>
+                
+                <h2 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter leading-[0.9] text-white">
+                  DASHBOARD <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-white">
+                    EMPRESA PRO
+                  </span>
+                </h2>
+                
+                <p className="text-zinc-400 text-xl leading-relaxed max-w-2xl font-light">
+                  A solução definitiva de <span className="text-emerald-400 font-medium">Inteligência ERP</span> para a gestão 360° do seu negócio. Automatize complexidades com <span className="text-white font-medium">PDV Multi-canais, Delivery Integrado, Controle de Estoque Rigoroso, Gestão Avançada de Mesas, Ordens de Serviço (OS)</span> e um ecossistema financeiro completo com relatórios estratégicos em tempo real.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-6 w-full lg:w-auto">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-5 rounded-3xl bg-zinc-900/30 border border-zinc-800/50 backdrop-blur-xl shadow-2xl">
+                    <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2 opacity-60">Arquitetura</p>
+                    <div className="text-white font-mono text-sm flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      SQL Híbrido
+                    </div>
                   </div>
-                  <div className="relative group mt-4 sm:mt-0">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 rounded-xl blur-lg opacity-75 animate-pulse"></div>
-                    <div 
-                      className="relative inline-flex items-center gap-2 bg-emerald-500 text-zinc-950 font-bold py-4 px-8 rounded-xl shadow-xl cursor-default opacity-90"
-                    >
-                      <Download className="w-5 h-5" />
-                      BAIXAR VERSÃO MACOS
-                      <div className="absolute -top-4 -right-4 bg-[#ff2a5f] text-white font-black text-[10px] sm:text-xs px-3 py-1.5 rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] border-2 border-zinc-950 transform rotate-12 z-10 whitespace-nowrap">
-                        EM BREVE
-                      </div>
+                  <div className="p-5 rounded-3xl bg-zinc-900/30 border border-zinc-800/50 backdrop-blur-xl shadow-2xl">
+                    <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2 opacity-60">Sincronia</p>
+                    <div className="text-white font-mono text-sm flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      Nuvem Automática
                     </div>
                   </div>
                 </div>
-                <span className="text-zinc-500 text-sm font-medium text-center">* INSTALE JÁ E TESTE POR 7 DIAS TOTALMENTE GRATUITO, COM TODAS AS FUNCIONALIDADES, SEM COMPROMISSO!</span>
-                <span className="text-red-500 font-bold text-center">PRIMEIRO ACESSO: LOGIN - admin / SENHA - 123</span>
+                
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <motion.a 
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="https://drive.google.com/file/d/1aKrjYPKgEajOUjd_uCfzQ9F-ggOKxN4L/view?usp=sharing" 
+                    target="_blank"
+                    className="flex-1 inline-flex items-center justify-center gap-3 bg-emerald-500 text-zinc-950 font-black py-4 px-10 rounded-2xl transition-all shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:bg-emerald-400"
+                  >
+                    <Download className="w-5 h-5" />
+                    WINDOWS
+                  </motion.a>
+                  <motion.a 
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="https://drive.google.com/file/d/1ZtKGNHloGustvSwb_MczFjYWy941ZhX9/view?usp=sharing" 
+                    target="_blank"
+                    className="flex-1 inline-flex items-center justify-center gap-3 bg-white/5 text-white border border-white/10 backdrop-blur-md font-bold py-4 px-10 rounded-2xl transition-all hover:bg-white/10"
+                  >
+                    <Download className="w-5 h-5" />
+                    LINUX
+                  </motion.a>
+                </div>
+                
+                <p className="text-[11px] text-zinc-500 text-center font-mono opacity-50 uppercase tracking-widest mt-2">
+                  * Licença de teste grátis por 7 dias
+                </p>
+                <div className="flex items-center justify-center gap-2 mt-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                  <Maximize2 size={12} className="text-emerald-500 animate-pulse" />
+                  <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider">Clique nos cards para ampliar as imagens</span>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {dashboardFeatures.map((feature) => (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: feature.id * 0.1 }}
-                  onClick={() => setSelectedDashboard(feature)}
-                  className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 hover:border-emerald-500/50 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all cursor-pointer relative"
-                >
-                  {feature.isNew && (
-                    <div className="absolute -top-3 -right-3 bg-gradient-to-br from-lime-400 to-emerald-500 text-zinc-950 font-black text-xs px-3 py-1.5 rounded-lg shadow-[0_5px_15px_rgba(163,230,53,0.4)] border border-lime-300 transform rotate-12 z-10">
-                      NOVO!
+            {/* Bento Grid Features */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[220px]">
+              {dashboardFeatures.map((feature, idx) => {
+                // Bento Layout Logic
+                const isVerticalLarge = [2, 5, 10, 13].includes(feature.id);
+                const isHorizontalLarge = [1, 6, 8, 14, 15].includes(feature.id);
+                
+                let colSpan = "md:col-span-12 lg:col-span-3";
+                let rowSpan = "row-span-1";
+
+                if (isVerticalLarge) rowSpan = "row-span-2";
+                if (isHorizontalLarge) colSpan = "md:col-span-12 lg:col-span-6";
+
+                return (
+                  <motion.div
+                    key={feature.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
+                    onClick={() => setSelectedDashboard(feature)}
+                    className={cn(
+                      "group relative bg-zinc-900/20 border border-white/[0.03] rounded-[2.5rem] overflow-hidden cursor-pointer hover:border-emerald-500/30 transition-all duration-700 shadow-2xl",
+                      colSpan,
+                      rowSpan
+                    )}
+                  >
+                    {/* Background Visual */}
+                    <div className="absolute inset-0 z-0">
+                      <img 
+                        src={feature.image} 
+                        alt={feature.title}
+                        className="w-full h-full object-cover grayscale opacity-10 group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000 ease-out"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
                     </div>
-                  )}
-                  <div className="aspect-video bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700 mb-4">
-                    <img 
-                      src={feature.image} 
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <h4 className="text-lg font-semibold text-white">{feature.title}</h4>
-                  <p className="text-zinc-400 text-sm">{feature.description}</p>
-                </motion.div>
-              ))}
+
+                    {/* Content Layer */}
+                    <div className="absolute inset-0 p-8 flex flex-col z-10">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-zinc-950 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                          {feature.icon || <Box className="w-6 h-6" />}
+                        </div>
+                        {feature.isNew && (
+                          <span className="px-3 py-1 rounded-lg bg-emerald-500 text-zinc-950 text-[10px] font-black uppercase tracking-tighter shadow-lg">
+                            NOVO
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className="mt-auto">
+                        <div className="flex items-center gap-2 mb-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <ZoomIn size={12} />
+                          <span className="text-[10px] font-bold uppercase tracking-widest">Clique para ver detalhes</span>
+                        </div>
+                        <h4 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors tracking-tight">
+                          {feature.title}
+                        </h4>
+                        <p className={cn(
+                          "text-zinc-400 leading-snug transition-all duration-700 font-light",
+                          (isHorizontalLarge || isVerticalLarge || feature.id === 1) 
+                            ? "text-base opacity-90" 
+                            : "text-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
+                        )}>
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Glossy Edge Overlay */}
+                    <div className="absolute inset-0 pointer-events-none border border-white/[0.05] rounded-[2.5rem]" />
+                  </motion.div>
+                );
+              })}
             </div>
+
+            {/* Support / Credentials Banner */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="mt-20 p-8 md:p-12 rounded-[3.5rem] bg-gradient-to-br from-zinc-900/50 to-emerald-900/10 border border-white/[0.05] backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-10 shadow-3xl"
+            >
+              <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left max-w-2xl">
+                <div className="w-20 h-20 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shadow-inner">
+                  <ShieldCheck className="w-10 h-10 text-emerald-400" />
+                </div>
+                <div>
+                  <h5 className="text-2xl font-bold text-white mb-2 tracking-tight">Primeiro acesso facilitado</h5>
+                  <p className="text-zinc-400 text-lg font-light leading-relaxed">
+                    Instale em poucos minutos e comece a gerenciar seu negócio agora. Utilize as credenciais padrão abaixo para acessar todas as funcionalidades imediatamente.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-stretch gap-4 w-full lg:w-auto">
+                <div className="flex flex-col items-center bg-zinc-950/80 px-8 py-5 rounded-3xl border border-white/[0.05] flex-1">
+                  <span className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2">Usuário</span>
+                  <code className="text-emerald-400 font-mono text-xl font-bold">admin</code>
+                </div>
+                <div className="flex flex-col items-center bg-zinc-950/80 px-8 py-5 rounded-3xl border border-white/[0.05] flex-1">
+                  <span className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-2">SENHA</span>
+                  <code className="text-emerald-400 font-mono text-xl font-bold">123</code>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -805,30 +1045,127 @@ const dashboardFeatures = [
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-md"
               onClick={() => setSelectedDashboard(null)}
             >
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.9 }}
-                className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="bg-zinc-950 border border-white/10 rounded-[3rem] p-8 md:p-12 max-w-5xl w-full max-h-[90vh] overflow-y-auto relative shadow-[0_30px_100px_rgba(0,0,0,0.8)]"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button 
                   onClick={() => setSelectedDashboard(null)}
-                  className="absolute top-4 right-4 text-zinc-400 hover:text-white"
+                  className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all z-20"
                 >
-                  <X className="w-8 h-8" />
+                  <X className="w-6 h-6" />
                 </button>
+
+                <div className="flex flex-col lg:flex-row gap-12 items-start">
+                  <div className="lg:w-1/2 space-y-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        {selectedDashboard.icon || <Box className="w-8 h-8" />}
+                      </div>
+                      <div>
+                        <span className="text-emerald-500 text-[10px] uppercase font-bold tracking-[0.3em] mb-1 block">Recurso do Sistema</span>
+                        <h3 className="text-4xl font-black text-white tracking-tight">{selectedDashboard.title}</h3>
+                      </div>
+                    </div>
+                    
+                    <p className="text-zinc-400 text-xl leading-relaxed font-light">
+                      {selectedDashboard.description}
+                    </p>
+
+                    <div className="pt-8 border-t border-white/5">
+                      <div className="flex items-center gap-4 mb-6">
+                        <span className="w-3 h-3 rounded-full bg-emerald-500" />
+                        <div className="text-white font-medium uppercase text-sm tracking-widest">Qualidades do Módulo</div>
+                      </div>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {(selectedDashboard.qualities || ['Sincronização Cloud', 'Relatórios PDF', 'Exportação Excel', 'Interface Responsiva']).map((item) => (
+                          <li key={item} className="flex items-center gap-3 text-zinc-500 text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <button 
+                      onClick={() => setSelectedDashboard(null)}
+                      className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all"
+                    >
+                      Voltar ao Painel
+                    </button>
+                  </div>
+
+                  <div className="lg:w-1/2 w-full">
+                    <div 
+                      onClick={() => setCurrentZoomImage(selectedDashboard.image)}
+                      className="rounded-[2rem] overflow-hidden border border-white/10 shadow-3xl bg-zinc-900 aspect-video relative group cursor-zoom-in"
+                    >
+                      <img 
+                        src={selectedDashboard.image} 
+                        alt={selectedDashboard.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform scale-90 group-hover:scale-100">
+                        <div className="px-6 py-3 bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-full text-white font-bold flex items-center gap-2 shadow-2xl">
+                          <Maximize2 size={20} className="text-emerald-500" />
+                          Ampliar Imagem
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-zinc-600 text-[10px] uppercase tracking-[0.2em] mt-4 text-center">Visualização de Interface v20.04.2026</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Full Screen Image Zoom Lightbox */}
+        <AnimatePresence>
+          {currentZoomImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+              onClick={() => setCurrentZoomImage(null)}
+            >
+              <button 
+                onClick={() => setCurrentZoomImage(null)}
+                className="absolute top-10 right-10 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-[210] border border-white/10"
+              >
+                <X className="w-8 h-8" />
+              </button>
+
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative max-w-[95vw] max-h-[85vh] rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(16,185,129,0.2)] bg-zinc-900 border border-white/5"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <img 
-                  src={selectedDashboard.image} 
-                  alt={selectedDashboard.title}
-                  className="w-full rounded-xl mb-6 border border-zinc-700"
+                  src={currentZoomImage} 
+                  alt="Interface Ampliada"
+                  className="w-full h-full object-contain cursor-default"
                   referrerPolicy="no-referrer"
                 />
-                <h3 className="text-3xl font-bold text-white mb-2">{selectedDashboard.title}</h3>
-                <p className="text-zinc-400 text-lg">{selectedDashboard.description}</p>
+                
+                {/* Image Navigation Hint */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 text-zinc-400 text-xs font-medium flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                  Visualização em Alta Definição
+                </div>
               </motion.div>
             </motion.div>
           )}
